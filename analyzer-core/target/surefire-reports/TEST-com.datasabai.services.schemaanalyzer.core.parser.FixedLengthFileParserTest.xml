@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.34" tests="19" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="-0.082" tests="19" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/home/gilbert/.sdkman/candidates/java/21.0.3-tem/lib"/>
-    <property name="sun.java.command" value="/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire/surefirebooter-20251226121049442_3.jar /home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire 2025-12-26T12-10-45_851-jvmRun1 surefire-20251226121049442_1tmp surefire_0-20251226121049442_2tmp"/>
+    <property name="sun.java.command" value="/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire/surefirebooter-20251226122100720_3.jar /home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire 2025-12-26T12-21-00_190-jvmRun1 surefire-20251226122100720_1tmp surefire_0-20251226122100720_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/test-classes:/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/classes:/home/gilbert/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.16.1/jackson-databind-2.16.1.jar:/home/gilbert/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/gilbert/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/gilbert/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.16.1/jackson-datatype-jsr310-2.16.1.jar:/home/gilbert/.m2/repository/com/opencsv/opencsv/5.9/opencsv-5.9.jar:/home/gilbert/.m2/repository/org/apache/commons/commons-text/1.12.0/commons-text-1.12.0.jar:/home/gilbert/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/home/gilbert/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home/gilbert/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/gilbert/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/home/gilbert/.m2/repository/com/github/victools/jsonschema-generator/4.33.1/jsonschema-generator-4.33.1.jar:/home/gilbert/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/gilbert/.m2/repository/com/github/victools/jsonschema-module-jackson/4.33.1/jsonschema-module-jackson-4.33.1.jar:/home/gilbert/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/gilbert/.m2/repository/org/slf4j/slf4j-api/2.0.10/slf4j-api-2.0.10.jar:/home/gilbert/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.1/junit-jupiter-5.10.1.jar:/home/gilbert/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/gilbert/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/gilbert/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/gilbert/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/gilbert/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/gilbert/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/gilbert/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/gilbert/.m2/repository/org/assertj/assertj-core/3.25.1/assertj-core-3.25.1.jar:/home/gilbert/.m2/repository/net/bytebuddy/byte-buddy/1.14.18/byte-buddy-1.14.18.jar:/home/gilbert/.m2/repository/org/mockito/mockito-core/5.8.0/mockito-core-5.8.0.jar:/home/gilbert/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.10/byte-buddy-agent-1.14.10.jar:/home/gilbert/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/gilbert/.m2/repository/org/slf4j/slf4j-simple/2.0.10/slf4j-simple-2.0.10.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire/surefirebooter-20251226121049442_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/gilbert/datasabai-saas-hsb-sdk-analyzer/analyzer-core/target/surefire/surefirebooter-20251226122100720_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.3+9-LTS"/>
     <property name="user.name" value="gilbert"/>
@@ -54,27 +54,27 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testCanParse_NoDescriptor" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.06"/>
-  <testcase name="testParse_TypeInference" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.172"/>
-  <testcase name="testMergeStructures_MultipleStructures" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.012"/>
+  <testcase name="testCanParse_NoDescriptor" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.145"/>
+  <testcase name="testParse_TypeInference" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="-0.419"/>
+  <testcase name="testMergeStructures_MultipleStructures" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.014"/>
   <testcase name="testCanParse_InvalidFileType" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.002"/>
-  <testcase name="testMergeStructures_SingleStructure" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.003"/>
-  <testcase name="testCanParse_ValidWithDescriptor" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.002"/>
-  <testcase name="testParse_RecordLengthValidation" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.006">
+  <testcase name="testMergeStructures_SingleStructure" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.004"/>
+  <testcase name="testCanParse_ValidWithDescriptor" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.005"/>
+  <testcase name="testParse_RecordLengthValidation" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.008">
     <system-err><![CDATA[[main] WARN com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParser - Line 1 has length 14 (expected 15)
 [main] WARN com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParser - Line 2 has length 14 (expected 15)
 ]]></system-err>
   </testcase>
-  <testcase name="testParse_OverlappingFields" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.005"/>
-  <testcase name="testParse_SkipLines" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.003"/>
+  <testcase name="testParse_OverlappingFields" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.007"/>
+  <testcase name="testParse_SkipLines" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.006"/>
   <testcase name="testGetSupportedFileType" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.001"/>
-  <testcase name="testParse_DescriptorFile" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.003"/>
-  <testcase name="testParse_BasicWithInlineDefinitions" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.004"/>
+  <testcase name="testParse_DescriptorFile" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.005"/>
+  <testcase name="testParse_BasicWithInlineDefinitions" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.008"/>
   <testcase name="testParse_MissingDescriptor" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.002"/>
-  <testcase name="testParse_InvalidDescriptorJson" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.003"/>
-  <testcase name="testMergeStructures_NullList" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.001"/>
-  <testcase name="testParse_ExplicitTypesOverrideInference" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.003"/>
+  <testcase name="testParse_InvalidDescriptorJson" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.006"/>
+  <testcase name="testMergeStructures_NullList" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.002"/>
+  <testcase name="testParse_ExplicitTypesOverrideInference" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.004"/>
   <testcase name="testParse_TrimFields" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.004"/>
-  <testcase name="testGetAvailableOptions" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.004"/>
+  <testcase name="testGetAvailableOptions" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.006"/>
   <testcase name="testMergeStructures_EmptyList" classname="com.datasabai.services.schemaanalyzer.core.parser.FixedLengthFileParserTest" time="0.001"/>
 </testsuite>

@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.datasabai.services</groupId>
+        <groupId>com.datasabai.hsb</groupId>
         <artifactId>file-schema-analyzer-service</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -30,8 +30,15 @@
 
         <!-- Analyzer Core - REQUIRED -->
         <dependency>
-            <groupId>com.datasabai.services</groupId>
+            <groupId>com.datasabai.hsb</groupId>
             <artifactId>analyzer-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Logging - REQUIRED by analyzer-core -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
 
         <!-- Testing ONLY -->

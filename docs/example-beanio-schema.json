@@ -1,0 +1,150 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "urn:csv:accounting:canonical:beanio-mapping",
+  "title" : "CSV_ACCOUNTING_CANONICAL",
+  "description" : "BeanIO-optimized JSON Schema for CSV mapping",
+  "type" : "object",
+  "x-beanio-config" : {
+    "format" : "csv",
+    "delimiter" : ";",
+    "quoteChar" : "\"",
+    "recordName" : "csvAccountingCanonical",
+    "strict" : true
+  },
+  "x-metadata" : {
+    "sourceType" : "CSV",
+    "generatedBy" : "File Schema Analyzer - BeanIO Edition",
+    "model" : "segmented-flat-file"
+  },
+  "properties" : {
+    "ACCOUNTS_BATCH" : {
+      "type" : "object",
+      "description" : "ACCOUNTS_BATCH segment",
+      "x-segment" : true,
+      "properties" : {
+        "NUMBER" : {
+          "type" : "string",
+          "x-position" : 0,
+          "x-csv-column" : "ACCOUNTS_BATCH.NUMBER",
+          "description" : "Column: ACCOUNTS_BATCH.NUMBER"
+        },
+        "LEDGER_TYPE" : {
+          "type" : "string",
+          "x-position" : 1,
+          "x-csv-column" : "ACCOUNTS_BATCH.LEDGER_TYPE",
+          "description" : "Column: ACCOUNTS_BATCH.LEDGER_TYPE"
+        },
+        "POSTING_DATE" : {
+          "type" : "string",
+          "x-position" : 2,
+          "x-csv-column" : "ACCOUNTS_BATCH.POSTING_DATE",
+          "description" : "Column: ACCOUNTS_BATCH.POSTING_DATE"
+        },
+        "COMPANY_CODE" : {
+          "type" : "string",
+          "x-position" : 3,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_CODE",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_CODE"
+        },
+        "COMPANY_DESCRIPTION" : {
+          "type" : "string",
+          "x-position" : 4,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_DESCRIPTION",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_DESCRIPTION"
+        },
+        "COMPANY_ATTRIBUTE_1" : {
+          "type" : "null",
+          "x-position" : 5,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_1",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_1"
+        },
+        "COMPANY_ATTRIBUTE_2" : {
+          "type" : "null",
+          "x-position" : 6,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_2",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_2"
+        },
+        "COMPANY_ATTRIBUTE_3" : {
+          "type" : "null",
+          "x-position" : 7,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_3",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_3"
+        },
+        "COMPANY_ATTRIBUTE_4" : {
+          "type" : "string",
+          "x-position" : 8,
+          "x-csv-column" : "ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_4",
+          "description" : "Column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_4"
+        },
+        "GENERATION_DATE" : {
+          "type" : "string",
+          "x-position" : 9,
+          "x-csv-column" : "ACCOUNTS_BATCH.GENERATION_DATE",
+          "description" : "Column: ACCOUNTS_BATCH.GENERATION_DATE"
+        }
+      },
+      "required" : [ "NUMBER", "LEDGER_TYPE", "POSTING_DATE", "COMPANY_CODE", "COMPANY_DESCRIPTION", "COMPANY_ATTRIBUTE_4", "GENERATION_DATE" ]
+    },
+    "REPORT" : {
+      "type" : "object",
+      "description" : "REPORT segment",
+      "x-segment" : true,
+      "properties" : {
+        "DOC_NUMBER" : {
+          "type" : "string",
+          "x-position" : 10,
+          "x-csv-column" : "REPORT.DOC_NUMBER",
+          "description" : "Column: REPORT.DOC_NUMBER"
+        },
+        "ALLOCATION_DATE" : {
+          "type" : "string",
+          "x-position" : 11,
+          "x-csv-column" : "REPORT.ALLOCATION_DATE",
+          "description" : "Column: REPORT.ALLOCATION_DATE"
+        },
+        "DATE_SUBMISSION_APPROVAL" : {
+          "type" : "string",
+          "x-position" : 12,
+          "x-csv-column" : "REPORT.DATE_SUBMISSION_APPROVAL",
+          "description" : "Column: REPORT.DATE_SUBMISSION_APPROVAL"
+        },
+        "TYPE" : {
+          "type" : "string",
+          "x-position" : 13,
+          "x-csv-column" : "REPORT.TYPE",
+          "description" : "Column: REPORT.TYPE"
+        },
+        "DESCRIPTION" : {
+          "type" : "null",
+          "x-position" : 14,
+          "x-csv-column" : "REPORT.DESCRIPTION",
+          "description" : "Column: REPORT.DESCRIPTION"
+        },
+        "MO_NUMBER" : {
+          "type" : "null",
+          "x-position" : 15,
+          "x-csv-column" : "REPORT.MO_NUMBER",
+          "description" : "Column: REPORT.MO_NUMBER"
+        },
+        "FOLDER_CODE" : {
+          "type" : "null",
+          "x-position" : 16,
+          "x-csv-column" : "REPORT.FOLDER_CODE",
+          "description" : "Column: REPORT.FOLDER_CODE"
+        },
+        "FOLDER_DESCRIPTION" : {
+          "type" : "null",
+          "x-position" : 17,
+          "x-csv-column" : "REPORT.FOLDER_DESCRIPTION",
+          "description" : "Column: REPORT.FOLDER_DESCRIPTION"
+        },
+        "REPLACEMENT_FOLDER_CODE" : {
+          "type" : "null",
+          "x-position" : 18,
+          "x-csv-column" : "REPORT.REPLACEMENT_FOLDER_CODE",
+          "description" : "Column: REPORT.REPLACEMENT_FOLDER_CODE"
+        },
+        "REPLACEMENT_FOLDER_DESCRIPTION" : {
+          "type" : "null",
+          "x-position" : 19,
+          "x-csv-column" : "REPORT.REPLACEMENT_FOLDER_DESCRIPTION",

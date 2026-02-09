@@ -454,4 +454,74 @@ public class CsvFileParserTest {
                 "sampleRows"
         );
     }
+
+    @Test
+    public void testParse_WithBOM() throws AnalyzerException {
+        // CSV content with UTF-8 BOM character at the beginning
+        String csvContent = "\uFEFFID;Name;Price\n1;Product A;19.99\n2;Product B;29.99";
+
+        Map<String, String> parserOptions = new HashMap<>();
+        parserOptions.put("delimiter", ";");
+
+        FileAnalysisRequest request = FileAnalysisRequest.builder()
+                .fileType(FileType.CSV)
+                .fileContent(csvContent)
+                .schemaName("Products")
+                .parserOptions(parserOptions)
+                .build();
+
+        StructureElement root = parser.parse(request);
+
+        // Verify root structure
+        assertThat(root.getName()).isEqualTo("Products");
+        assertThat(root.getType()).isEqualTo("array");
+        assertThat(root.isArray()).isTrue();
+        assertThat(root.getChildren()).hasSize(1);
+
+        // Verify item structure
+        StructureElement item = root.getChildren().get(0);
+        assertThat(item.getName()).isEqualTo("item");
+        assertThat(item.getType()).isEqualTo("object");
+        assertThat(item.getChildren()).hasSize(3);
+
+        // Verify that the first column name is "ID" and not "﻿ID" (with BOM)
+        StructureElement idColumn = item.findChild("ID");
+        assertThat(idColumn).isNotNull();
+        assertThat(idColumn.getName()).isEqualTo("ID");
+        assertThat(idColumn.getType()).isEqualTo("string");
+
+        StructureElement nameColumn = item.findChild("Name");
+        assertThat(nameColumn).isNotNull();
+
+        StructureElement priceColumn = item.findChild("Price");
+        assertThat(priceColumn).isNotNull();
+    }
+
+    @Test
+    public void testParse_WithQuotedFieldsAndSemicolon() throws AnalyzerException {
+        String csvContent = """
+                "ID";"Name";"Description"
+                "1";"Product A";"A simple, basic product"
+                "2";"Product B";"An advanced, premium product"
+                """;
+
+        Map<String, String> parserOptions = new HashMap<>();
+        parserOptions.put("delimiter", ";");
+
+        FileAnalysisRequest request = FileAnalysisRequest.builder()
+                .fileType(FileType.CSV)
+                .fileContent(csvContent)
+                .schemaName("Products")
+                .parserOptions(parserOptions)
+                .build();
+
+        StructureElement root = parser.parse(request);
+        StructureElement item = root.getChildren().get(0);
+
+        // Should handle quoted fields with semicolon delimiter correctly
+        assertThat(item.getChildren()).hasSize(3);
+        assertThat(item.findChild("ID")).isNotNull();
+        assertThat(item.findChild("Name")).isNotNull();
+        assertThat(item.findChild("Description")).isNotNull();
+    }
 }

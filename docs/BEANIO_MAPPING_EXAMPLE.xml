@@ -1,0 +1,188 @@
+<!--
+  BeanIO Mapping Configuration Example
+  Generated from CSV JSON Schema
+
+  This is an example BeanIO XML mapping configuration that can be generated
+  from the BeanIO-optimized JSON Schema.
+
+  Source: Notilus CSV accounting data (CSV_ACCOUNTING_CANONICAL)
+-->
+<beanio xmlns="http://www.beanio.org/2012/03"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+  <!--
+    Stream Definition: CSV Accounting Data
+    - Format: CSV with semicolon delimiter
+    - Structure: Segmented flat file
+  -->
+  <stream name="accountingData" format="csv" strict="true">
+
+    <parser>
+      <property name="delimiter" value=";"/>
+      <property name="quote" value="&quot;"/>
+    </parser>
+
+    <!-- Main record representing one CSV row -->
+    <record name="csvAccountingCanonical" class="com.datasabai.hsb.model.AccountingEntry">
+
+      <!-- ACCOUNTS_BATCH Segment (positions 0-9) -->
+      <segment name="accountsBatch" class="com.datasabai.hsb.model.AccountsBatch">
+        <field name="number" position="0"/>
+        <field name="ledgerType" position="1"/>
+        <field name="postingDate" position="2"/>
+        <field name="companyCode" position="3"/>
+        <field name="companyDescription" position="4"/>
+        <field name="companyAttribute1" position="5" minOccurs="0"/>
+        <field name="companyAttribute2" position="6" minOccurs="0"/>
+        <field name="companyAttribute3" position="7" minOccurs="0"/>
+        <field name="companyAttribute4" position="8" minOccurs="0"/>
+        <field name="generationDate" position="9"/>
+      </segment>
+
+      <!-- REPORT Segment (positions 10-30) -->
+      <segment name="report" class="com.datasabai.hsb.model.Report">
+        <field name="docNumber" position="10"/>
+        <field name="allocationDate" position="11"/>
+        <field name="dateSubmissionApproval" position="12"/>
+        <field name="type" position="13"/>
+        <field name="description" position="14" minOccurs="0"/>
+        <field name="moNumber" position="15" minOccurs="0"/>
+        <field name="folderCode" position="16" minOccurs="0"/>
+        <field name="folderDescription" position="17" minOccurs="0"/>
+        <field name="replacementFolderCode" position="18" minOccurs="0"/>
+        <field name="replacementFolderDescription" position="19" minOccurs="0"/>
+        <field name="folderAttribute1" position="20" minOccurs="0"/>
+        <field name="folderAttribute2" position="21" minOccurs="0"/>
+        <field name="folderAttribute3" position="22" minOccurs="0"/>
+        <field name="folderAttribute4" position="23" minOccurs="0"/>
+        <field name="replacementFolderAttribute1" position="24" minOccurs="0"/>
+        <field name="replacementFolderAttribute2" position="25" minOccurs="0"/>
+        <field name="replacementFolderAttribute3" position="26" minOccurs="0"/>
+        <field name="replacementFolderAttribute4" position="27" minOccurs="0"/>
+        <field name="serviceCode" position="28"/>
+        <field name="serviceName" position="29"/>
+        <field name="typeName" position="30"/>
+      </segment>
+
+      <!-- ACCOUNT_ENTRY Segment (positions 31-51) -->
+      <segment name="accountEntry" class="com.datasabai.hsb.model.AccountEntry">
+        <field name="accountCode" position="31"/>
+        <field name="accountDescription" position="32"/>
+        <field name="lineType" position="33"/>
+        <field name="debit" position="34" type="java.math.BigDecimal"/>
+        <field name="credit" position="35" type="java.math.BigDecimal"/>
+        <field name="chartAccountsCode" position="36"/>
+        <field name="chartAccountsDescription" position="37"/>
+        <field name="entryNumber" position="38"/>
+        <field name="lineNumber" position="39"/>
+        <field name="direction" position="40"/>
+        <field name="signedAmount" position="41" type="java.math.BigDecimal"/>
+        <field name="amount" position="42" type="java.math.BigDecimal"/>
+        <field name="currencyCode" position="43"/>
+        <field name="distributedVat" position="44" type="java.math.BigDecimal"/>
+        <field name="signedDistributedVat" position="45" type="java.math.BigDecimal"/>
+        <field name="baseExclTax" position="46" type="java.math.BigDecimal"/>
+        <field name="vatCode" position="47"/>
+        <field name="vatRate" position="48" type="java.math.BigDecimal"/>
+        <field name="vatBase" position="49" type="java.math.BigDecimal"/>
+        <field name="entryDate" position="50"/>
+        <field name="accountType" position="51"/>
+      </segment>
+
+      <!-- EXPENSE Segment (positions 52-104) -->
+      <segment name="expense" class="com.datasabai.hsb.model.Expense" minOccurs="0">
+        <field name="comment" position="52" minOccurs="0"/>
+        <field name="receipt" position="53" minOccurs="0"/>
+        <field name="notPaid" position="54" minOccurs="0"/>
+        <field name="taxIdNumber" position="55" minOccurs="0"/>
+        <field name="currencyCode" position="56"/>
+        <field name="currencyExchangeRate" position="57" type="java.math.BigDecimal"/>
+        <field name="currencyUnit" position="58"/>
+        <field name="exceedingWarning" position="59" minOccurs="0"/>
+        <field name="exceedingBlocking" position="60" minOccurs="0"/>
+        <field name="currencyAmountEntered" position="61" type="java.math.BigDecimal"/>
+        <field name="number" position="62"/>
+        <field name="date" position="63"/>
+        <field name="signedCurrencyAmountEntered" position="64" type="java.math.BigDecimal"/>
+        <field name="typeReason" position="65" minOccurs="0"/>
+        <!-- Additional expense fields at positions 66-104 -->
+      </segment>
+
+      <!-- TYPE Segment (positions 105-116) -->
+      <segment name="type" class="com.datasabai.hsb.model.Type">
+        <field name="code" position="105"/>
+        <field name="description" position="106"/>
+        <field name="attribute1" position="107" minOccurs="0"/>
+        <field name="attribute2" position="108" minOccurs="0"/>
+        <field name="attribute3" position="109" minOccurs="0"/>
+        <field name="attribute4" position="110" minOccurs="0"/>
+        <field name="benefitKind" position="111"/>
+        <field name="groupCode" position="112"/>
+        <field name="groupDescription" position="113"/>
+        <field name="typeDescription" position="114"/>
+        <field name="typeYourway" position="115" minOccurs="0"/>
+        <field name="typeAdsd" position="116" minOccurs="0"/>
+      </segment>
+
+      <!-- PERSON Segment (positions 117-139) -->
+      <segment name="person" class="com.datasabai.hsb.model.Person">
+        <field name="number" position="117"/>
+        <field name="login" position="118"/>
+        <field name="surname" position="119"/>
+        <field name="firstName" position="120"/>
+        <field name="categoryCode" position="121"/>
+        <field name="categoryDescription" position="122"/>
+        <field name="departmentCode" position="123"/>
+        <field name="departmentDescription" position="124"/>
+        <field name="attribute1" position="125" minOccurs="0"/>
+        <field name="attribute2" position="126" minOccurs="0"/>
+        <field name="attribute3" position="127" minOccurs="0"/>
+        <field name="attribute4" position="128" minOccurs="0"/>
+        <field name="attribute5" position="129" minOccurs="0"/>
+        <field name="departmentAttribute1" position="130" minOccurs="0"/>
+        <field name="departmentAttribute2" position="131" minOccurs="0"/>
+        <field name="departmentAttribute3" position="132" minOccurs="0"/>
+        <field name="departmentAttribute4" position="133" minOccurs="0"/>
+        <field name="information1" position="134" minOccurs="0"/>
+        <field name="information2" position="135" minOccurs="0"/>
+        <field name="information3" position="136" minOccurs="0"/>
+        <field name="information4" position="137" minOccurs="0"/>
+        <field name="information5" position="138" minOccurs="0"/>
+        <field name="dateClosure" position="139" minOccurs="0"/>
+      </segment>
+
+      <!-- MISSION Segment (positions 140-151) -->
+      <segment name="mission" class="com.datasabai.hsb.model.Mission" minOccurs="0">
+        <field name="objective" position="140" minOccurs="0"/>
+        <field name="startDate" position="141" minOccurs="0"/>
+        <field name="endDate" position="142" minOccurs="0"/>
+        <field name="folderCode" position="143" minOccurs="0"/>
+        <field name="folderDescription" position="144" minOccurs="0"/>
+        <field name="departmentCode" position="145" minOccurs="0"/>
+        <field name="departmentDescription" position="146" minOccurs="0"/>
+        <field name="departmentAttribute1" position="147" minOccurs="0"/>
+        <field name="departmentAttribute2" position="148" minOccurs="0"/>
+        <field name="departmentAttribute3" position="149" minOccurs="0"/>
+        <field name="departmentAttribute4" position="150" minOccurs="0"/>
+        <field name="type" position="151" minOccurs="0"/>
+      </segment>
+
+      <!-- ADVANCEPAYMENT Segment (positions 152-158) -->
+      <segment name="advancePayment" class="com.datasabai.hsb.model.AdvancePayment" minOccurs="0">
+        <field name="number" position="152" minOccurs="0"/>
+        <field name="description" position="153" minOccurs="0"/>
+        <field name="allocatedCurrencyAmount" position="154" type="java.math.BigDecimal" minOccurs="0"/>
+        <field name="signedAllocatedCurrencyAmount" position="155" type="java.math.BigDecimal" minOccurs="0"/>
+        <field name="currencyCode" position="156" minOccurs="0"/>
+        <field name="currencyExchangeRate" position="157" type="java.math.BigDecimal" minOccurs="0"/>
+        <field name="currencyUnit" position="158" minOccurs="0"/>
+      </segment>
+
+      <!-- Additional segments: VEHICLE, FOLDER1, FOLDER2, FOLDER3, DEPARTMENT, LOCATION, COUNTRY, COMPANY, BRANCH, etc. -->
+
+    </record>
+
+  </stream>
+
+</beanio>

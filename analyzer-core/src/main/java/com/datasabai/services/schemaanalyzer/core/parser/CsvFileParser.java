@@ -90,6 +90,9 @@ public class CsvFileParser implements FileParser {
                 throw new AnalyzerException("INVALID_CSV", FileType.CSV, "No file content provided");
             }
 
+            // Remove BOM (Byte Order Mark) if present at the beginning of the file
+            content = removeBOM(content);
+
             // Get parser options
             String delimiter = request.getParserOption("delimiter", DEFAULT_DELIMITER);
             boolean hasHeader = Boolean.parseBoolean(request.getParserOption("hasHeader", DEFAULT_HAS_HEADER));
@@ -188,6 +191,21 @@ public class CsvFileParser implements FileParser {
             throw new AnalyzerException("PARSE_ERROR", FileType.CSV,
                     "Failed to parse CSV: " + e.getMessage(), e);
         }
+    }
+
+    /**
+     * Removes the BOM (Byte Order Mark) from the beginning of the content if present.
+     * The UTF-8 BOM is the character '\uFEFF'.
+     *
+     * @param content the file content
+     * @return content without BOM
+     */
+    private String removeBOM(String content) {
+        if (content != null && !content.isEmpty() && content.charAt(0) == '\uFEFF') {
+            log.debug("BOM detected and removed from CSV content");
+            return content.substring(1);
+        }
+        return content;
     }
 
     /**

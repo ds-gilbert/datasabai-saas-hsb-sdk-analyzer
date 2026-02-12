@@ -22,7 +22,6 @@ import java.util.Map;
  *     .fileContent("<customer><id>123</id></customer>")
  *     .schemaName("Customer")
  *     .detectArrays(true)
- *     .optimizeForBeanIO(true)
  *     .parserOption("preserveNamespaces", "true")
  *     .build();
  * }</pre>
@@ -56,14 +55,12 @@ public class FileAnalysisRequest {
     private String schemaName;
     private List<String> sampleFileContents;
     private boolean detectArrays;
-    private boolean optimizeForBeanIO;
     private Map<String, String> parserOptions;
     private Map<String, String> typeOverrides;
 
     public FileAnalysisRequest() {
         this.sampleFileContents = new ArrayList<>();
         this.detectArrays = true;
-        this.optimizeForBeanIO = true;
         this.parserOptions = new HashMap<>();
         this.typeOverrides = new HashMap<>();
     }
@@ -172,18 +169,6 @@ public class FileAnalysisRequest {
         this.detectArrays = detectArrays;
     }
 
-    /**
-     * Checks if BeanIO optimization is enabled.
-     *
-     * @return true if should optimize for BeanIO
-     */
-    public boolean isOptimizeForBeanIO() {
-        return optimizeForBeanIO;
-    }
-
-    public void setOptimizeForBeanIO(boolean optimizeForBeanIO) {
-        this.optimizeForBeanIO = optimizeForBeanIO;
-    }
 
     /**
      * Gets parser-specific options.
@@ -287,11 +272,6 @@ public class FileAnalysisRequest {
 
         public Builder detectArrays(boolean detectArrays) {
             request.detectArrays = detectArrays;
-            return this;
-        }
-
-        public Builder optimizeForBeanIO(boolean optimizeForBeanIO) {
-            request.optimizeForBeanIO = optimizeForBeanIO;
             return this;
         }
 

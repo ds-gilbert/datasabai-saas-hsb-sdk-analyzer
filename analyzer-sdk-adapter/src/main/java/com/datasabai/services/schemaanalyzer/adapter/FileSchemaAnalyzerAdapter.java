@@ -170,7 +170,6 @@ public class FileSchemaAnalyzerAdapter implements SdkModule<FileAnalysisRequest,
 
         // General configuration
         schema.put("detectArrays", "Enable automatic array detection (true/false, default: true)");
-        schema.put("optimizeForBeanIO", "Optimize schema for BeanIO generation (true/false, default: true)");
 
         // CSV parser options
         schema.put("parserOptions.delimiter", "CSV: Column delimiter (default: ,)");
@@ -211,16 +210,9 @@ public class FileSchemaAnalyzerAdapter implements SdkModule<FileAnalysisRequest,
      */
     private void applyContextConfiguration(FileAnalysisRequest request, SdkContext context) {
         // Apply detectArrays if configured
-context.getConfig("detectArrays").ifPresent(value ->
-    request.setDetectArrays(Boolean.parseBoolean(value))
-);
-
-
-        // Apply optimizeForBeanIO if configured
-context.getConfig("optimizeForBeanIO").ifPresent(value ->
-    request.setOptimizeForBeanIO(Boolean.parseBoolean(value))
-);
-
+        context.getConfig("detectArrays").ifPresent(value ->
+            request.setDetectArrays(Boolean.parseBoolean(value))
+        );
 
         // Apply parser options
         Map<String, String> parserOptions = new HashMap<>();

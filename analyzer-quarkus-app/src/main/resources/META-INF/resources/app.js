@@ -102,7 +102,6 @@ async function analyzeFile() {
     }
 
     formData.append('detectArrays', document.getElementById('detectArrays').checked);
-    formData.append('optimizeForBeanIO', document.getElementById('optimizeForBeanIO').checked);
 
     // Add parser options
     const parserOptions = getParserOptions();

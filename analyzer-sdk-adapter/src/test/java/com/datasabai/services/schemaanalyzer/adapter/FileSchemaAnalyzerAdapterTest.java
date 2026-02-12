@@ -58,13 +58,14 @@ class FileSchemaAnalyzerAdapterTest {
         assertThat(schema).isNotEmpty();
         assertThat(schema).containsKeys(
                 "detectArrays",
-                "optimizeForBeanIO",
                 "parserOptions.delimiter",
                 "parserOptions.hasHeader",
                 "parserOptions.strictMode",
                 "parserOptions.fieldDefinitions",
                 "parserOptions.tagValuePairs"
         );
+        // Verify NO BeanIO config
+        assertThat(schema).doesNotContainKey("optimizeForBeanIO");
     }
 
     @Test

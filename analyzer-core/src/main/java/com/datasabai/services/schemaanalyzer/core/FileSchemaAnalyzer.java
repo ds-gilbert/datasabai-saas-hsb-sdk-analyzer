@@ -1,7 +1,7 @@
 package com.datasabai.services.schemaanalyzer.core;
 
 import com.datasabai.services.schemaanalyzer.core.generator.JsonSchemaGenerator;
-import com.datasabai.services.schemaanalyzer.core.generator.SchemaOptimizer;
+import com.datasabai.services.schemaanalyzer.core.generator.JsonSchema2PojoGenerator;
 import com.datasabai.services.schemaanalyzer.core.model.*;
 import com.datasabai.services.schemaanalyzer.core.parser.FileParser;
 import com.datasabai.services.schemaanalyzer.core.parser.ParserFactory;
@@ -19,14 +19,13 @@ import java.util.Map;
  * This service orchestrates the entire analysis process:
  * </p>
  *
- * <h3>Analysis Process (8 Steps):</h3>
+ * <h3>Analysis Process (7 Steps):</h3>
  * <ol>
  *   <li><b>Validation</b>: Validate input request (file type, content, schema name)</li>
  *   <li><b>Parser Selection</b>: Select appropriate parser using ParserFactory</li>
  *   <li><b>File Parsing</b>: Parse the main file into StructureElement tree</li>
  *   <li><b>Sample Fusion</b>: Parse and merge sample files for better inference</li>
  *   <li><b>Schema Generation</b>: Generate JSON Schema from structure</li>
- *   <li><b>Optimization</b>: Optimize schema for BeanIO if requested</li>
  *   <li><b>Validation</b>: Validate the generated schema</li>
  *   <li><b>Result Construction</b>: Build result with metadata and statistics</li>
  * </ol>
@@ -59,7 +58,6 @@ public class FileSchemaAnalyzer {
 
     private final ParserFactory parserFactory;
     private final JsonSchemaGenerator schemaGenerator;
-    private final SchemaOptimizer schemaOptimizer;
 
     /**
      * Creates a new FileSchemaAnalyzer with default components.
@@ -67,7 +65,6 @@ public class FileSchemaAnalyzer {
     public FileSchemaAnalyzer() {
         this.parserFactory = new ParserFactory();
         this.schemaGenerator = new JsonSchemaGenerator();
-        this.schemaOptimizer = new SchemaOptimizer();
     }
 
     /**
@@ -78,16 +75,13 @@ public class FileSchemaAnalyzer {
      *
      * @param parserFactory parser factory
      * @param schemaGenerator schema generator
-     * @param schemaOptimizer schema optimizer
      */
     public FileSchemaAnalyzer(
             ParserFactory parserFactory,
-            JsonSchemaGenerator schemaGenerator,
-            SchemaOptimizer schemaOptimizer
+            JsonSchemaGenerator schemaGenerator
     ) {
         this.parserFactory = parserFactory;
         this.schemaGenerator = schemaGenerator;
-        this.schemaOptimizer = schemaOptimizer;
     }
 
     /**
@@ -125,12 +119,7 @@ public class FileSchemaAnalyzer {
             // Step 5: SCHEMA GENERATION
             Map<String, Object> jsonSchema = generateSchema(request, structure);
 
-            // Step 6: OPTIMIZATION
-            if (request.isOptimizeForBeanIO()) {
-                jsonSchema = optimizeSchema(request, jsonSchema);
-            }
-
-            // Step 7: VALIDATION
+            // Step 6: VALIDATION
             validateSchema(jsonSchema);
 
             // Step 8: RESULT CONSTRUCTION
@@ -323,7 +312,15 @@ public class FileSchemaAnalyzer {
             throws AnalyzerException {
         log.debug("Step 5: Generating JSON Schema");
 
-        Map<String, Object> schema = schemaGenerator.generateSchema(structure, request);
+        // For CSV files, use JsonSchema2PojoGenerator for Header+Records structure
+        Map<String, Object> schema;
+        if (request.getFileType() == FileType.CSV) {
+            log.debug("Using JsonSchema2PojoGenerator for CSV (Header+Records structure)");
+            JsonSchema2PojoGenerator csvGenerator = new JsonSchema2PojoGenerator();
+            schema = csvGenerator.generateSchema(structure, request);
+        } else {
+            schema = schemaGenerator.generateSchema(structure, request);
+        }
 
         if (schema == null || schema.isEmpty()) {
             throw new AnalyzerException(
@@ -338,27 +335,10 @@ public class FileSchemaAnalyzer {
     }
 
     /**
-     * Step 6: Optimizes the schema for BeanIO.
-     */
-    private Map<String, Object> optimizeSchema(FileAnalysisRequest request, Map<String, Object> schema)
-            throws AnalyzerException {
-        log.debug("Step 6: Optimizing schema for BeanIO");
-
-        Map<String, Object> optimized = schemaOptimizer.optimize(
-                schema,
-                request.getFileType(),
-                request.isOptimizeForBeanIO()
-        );
-
-        log.debug("Schema optimization completed");
-        return optimized;
-    }
-
-    /**
-     * Step 7: Validates the generated schema.
+     * Step 6: Validates the generated schema.
      */
     private void validateSchema(Map<String, Object> schema) throws AnalyzerException {
-        log.debug("Step 7: Validating generated schema");
+        log.debug("Step 6: Validating generated schema");
 
         if (!schemaGenerator.validateSchema(schema)) {
             throw new AnalyzerException(
@@ -371,7 +351,7 @@ public class FileSchemaAnalyzer {
     }
 
     /**
-     * Step 8: Builds the result object.
+     * Step 7: Builds the result object.
      */
     private SchemaGenerationResult buildResult(
             FileAnalysisRequest request,
@@ -379,10 +359,16 @@ public class FileSchemaAnalyzer {
             Map<String, Object> jsonSchema,
             long startTime
     ) throws AnalyzerException {
-        log.debug("Step 8: Building result");
+        log.debug("Step 7: Building result");
 
-        // Generate schema as string
-        String jsonSchemaString = schemaGenerator.generateSchemaAsString(structure, request);
+        // Generate schema as string using appropriate generator
+        String jsonSchemaString;
+        if (request.getFileType() == FileType.CSV) {
+            JsonSchema2PojoGenerator csvGenerator = new JsonSchema2PojoGenerator();
+            jsonSchemaString = csvGenerator.generateSchemaAsString(structure, request);
+        } else {
+            jsonSchemaString = schemaGenerator.generateSchemaAsString(structure, request);
+        }
 
         // Build metadata
         SchemaMetadata metadata = SchemaMetadata.builder()

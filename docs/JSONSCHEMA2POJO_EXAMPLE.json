@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CsvAccountingCanonical",
+  "type": "object",
+  "properties": {
+    "header": {
+      "$ref": "#/definitions/Header"
+    },
+    "records": {
+      "type": "array",
+      "description": "List of records from CSV",
+      "items": {
+        "$ref": "#/definitions/CsvAccountingCanonicalRecord"
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["records"],
+  "definitions": {
+    "Header": {
+      "type": "object",
+      "description": "Header information (batch/document level)",
+      "properties": {
+        "accountsBatch": {
+          "type": "object",
+          "description": "ACCOUNTS_BATCH segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.NUMBER"
+            },
+            "ledgerType": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.LEDGER_TYPE"
+            },
+            "postingDate": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.POSTING_DATE"
+            },
+            "companyCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_CODE"
+            },
+            "companyDescription": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_DESCRIPTION"
+            }
+          },
+          "required": ["number", "ledgerType", "postingDate", "companyCode", "companyDescription"]
+        },
+        "report": {
+          "type": "object",
+          "description": "REPORT segment",
+          "properties": {
+            "docNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT.DOC_NUMBER"
+            },
+            "allocationDate": {
+              "type": "string",
+              "description": "CSV column: REPORT.ALLOCATION_DATE"
+            },
+            "type": {
+              "type": "string",
+              "description": "CSV column: REPORT.TYPE"
+            }
+          },
+          "required": ["docNumber", "allocationDate", "type"]
+        }
+      },
+      "required": ["accountsBatch", "report"]
+    },
+    "CsvAccountingCanonicalRecord": {
+      "type": "object",
+      "description": "Single record line (detail level)",
+      "properties": {
+        "accountEntry": {
+          "type": "object",
+          "description": "ACCOUNT_ENTRY segment",
+          "properties": {
+            "entryNumber": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ENTRY_NUMBER"
+            },
+            "lineNumber": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.LINE_NUMBER"
+            },
+            "accountCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ACCOUNT_CODE"
+            },
+            "accountDescription": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ACCOUNT_DESCRIPTION"
+            },
+            "direction": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.DIRECTION"
+            },
+            "debit": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.DEBIT"
+            },
+            "credit": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.CREDIT"
+            }
+          },
+          "required": ["entryNumber", "accountCode", "direction"]
+        },
+        "expense": {
+          "type": "object",
+          "description": "EXPENSE segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.NUMBER"
+            },
+            "date": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.DATE"
+            },
+            "comment": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.COMMENT"
+            },
+            "currencyCode": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.CURRENCY_CODE"
+            }
+          },
+          "required": ["number", "date", "currencyCode"]
+        },
+        "person": {
+          "type": "object",
+          "description": "PERSON segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: PERSON.NUMBER"
+            },
+            "login": {
+              "type": "string",
+              "description": "CSV column: PERSON.LOGIN"
+            },
+            "surname": {
+              "type": "string",
+              "description": "CSV column: PERSON.SURNAME"
+            },
+            "firstName": {
+              "type": "string",
+              "description": "CSV column: PERSON.FIRST_NAME"
+            }
+          },
+          "required": ["number", "login", "surname", "firstName"]
+        },
+        "type": {
+          "type": "object",
+          "description": "TYPE segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: TYPE.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: TYPE.DESCRIPTION"
+            }
+          },
+          "required": ["code", "description"]
+        }
+      },
+      "required": ["accountEntry", "expense", "person", "type"]
+    }
+  }
+}

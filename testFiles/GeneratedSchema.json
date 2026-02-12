@@ -1,0 +1,1184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GeneratedSchema",
+  "type": "object",
+  "properties": {
+    "header": {
+      "$ref": "#/definitions/Header",
+      "x-java-field": "header",
+      "x-beanio-field": {
+        "name": "header",
+        "javaName": "header"
+      },
+      "x-csv-position": 0
+    },
+    "records": {
+      "type": "array",
+      "description": "List of records from CSV",
+      "items": {
+        "$ref": "#/definitions/GeneratedSchemaRecord",
+        "x-beanio": {
+          "streamFormat": "csv",
+          "generatePOJO": true,
+          "useBuilders": true
+        }
+      },
+      "minItems": 1,
+      "x-java-field": "records",
+      "x-beanio-field": {
+        "name": "records",
+        "javaName": "records",
+        "typeHandler": "java.util.List"
+      },
+      "x-csv-position": 1
+    }
+  },
+  "required": [
+    "records"
+  ],
+  "definitions": {
+    "Header": {
+      "type": "object",
+      "description": "Header information (batch/document level)",
+      "properties": {
+        "accountsBatch": {
+          "type": "object",
+          "description": "ACCOUNTS_BATCH segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.NUMBER"
+            },
+            "ledgerType": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.LEDGER_TYPE"
+            },
+            "postingDate": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.POSTING_DATE"
+            },
+            "companyCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_CODE"
+            },
+            "companyDescription": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_DESCRIPTION"
+            },
+            "companyAttribute1": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_1"
+            },
+            "companyAttribute2": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_2"
+            },
+            "companyAttribute3": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_3"
+            },
+            "companyAttribute4": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.COMPANY_ATTRIBUTE_4"
+            },
+            "generationDate": {
+              "type": "string",
+              "description": "CSV column: ACCOUNTS_BATCH.GENERATION_DATE"
+            }
+          },
+          "required": [
+            "number",
+            "ledgerType",
+            "postingDate",
+            "companyCode",
+            "companyDescription",
+            "companyAttribute4",
+            "generationDate"
+          ]
+        },
+        "report": {
+          "type": "object",
+          "description": "REPORT segment",
+          "properties": {
+            "docNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT.DOC_NUMBER"
+            },
+            "allocationDate": {
+              "type": "string",
+              "description": "CSV column: REPORT.ALLOCATION_DATE"
+            },
+            "dateSubmissionApproval": {
+              "type": "string",
+              "description": "CSV column: REPORT.DATE_SUBMISSION_APPROVAL"
+            },
+            "type": {
+              "type": "string",
+              "description": "CSV column: REPORT.TYPE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: REPORT.DESCRIPTION"
+            },
+            "moNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT.MO_NUMBER"
+            },
+            "folderCode": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_CODE"
+            },
+            "folderDescription": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_DESCRIPTION"
+            },
+            "replacementFolderCode": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_CODE"
+            },
+            "replacementFolderDescription": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_DESCRIPTION"
+            },
+            "folderAttribute1": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_ATTRIBUTE_1"
+            },
+            "folderAttribute2": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_ATTRIBUTE_2"
+            },
+            "folderAttribute3": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_ATTRIBUTE_3"
+            },
+            "folderAttribute4": {
+              "type": "string",
+              "description": "CSV column: REPORT.FOLDER_ATTRIBUTE_4"
+            },
+            "replacementFolderAttribute1": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_ATTRIBUTE_1"
+            },
+            "replacementFolderAttribute2": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_ATTRIBUTE_2"
+            },
+            "replacementFolderAttribute3": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_ATTRIBUTE_3"
+            },
+            "replacementFolderAttribute4": {
+              "type": "string",
+              "description": "CSV column: REPORT.REPLACEMENT_FOLDER_ATTRIBUTE_4"
+            },
+            "serviceCode": {
+              "type": "string",
+              "description": "CSV column: REPORT.SERVICE_CODE"
+            },
+            "serviceName": {
+              "type": "string",
+              "description": "CSV column: REPORT.SERVICE_NAME"
+            },
+            "typeName": {
+              "type": "string",
+              "description": "CSV column: REPORT.TYPE_NAME"
+            }
+          },
+          "required": [
+            "docNumber",
+            "allocationDate",
+            "dateSubmissionApproval",
+            "type",
+            "serviceCode",
+            "serviceName",
+            "typeName"
+          ]
+        },
+        "reportWkf": {
+          "type": "object",
+          "description": "REPORT_WKF segment",
+          "properties": {
+            "firstLoggedInPersonNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.FIRST_LOGGED_IN_PERSON_NUMBER"
+            },
+            "firstUsedPersonNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.FIRST_USED_PERSON_NUMBER"
+            },
+            "firstDate": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.FIRST_DATE"
+            },
+            "lastLoggedInPersonNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.LAST_LOGGED_IN_PERSON_NUMBER"
+            },
+            "lastUsedPersonNumber": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.LAST_USED_PERSON_NUMBER"
+            },
+            "lastDate": {
+              "type": "string",
+              "description": "CSV column: REPORT_WKF.LAST_DATE"
+            }
+          },
+          "required": [
+            "firstLoggedInPersonNumber",
+            "firstUsedPersonNumber",
+            "firstDate",
+            "lastLoggedInPersonNumber",
+            "lastUsedPersonNumber",
+            "lastDate"
+          ]
+        },
+        "loggedInAccountant": {
+          "type": "object",
+          "description": "LOGGED_IN_ACCOUNTANT segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: LOGGED_IN_ACCOUNTANT.NUMBER"
+            }
+          },
+          "required": [
+            "number"
+          ]
+        },
+        "usedAccountant": {
+          "type": "object",
+          "description": "USED_ACCOUNTANT segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: USED_ACCOUNTANT.NUMBER"
+            }
+          },
+          "required": [
+            "number"
+          ]
+        }
+      },
+      "required": [
+        "accountsBatch",
+        "report",
+        "reportWkf",
+        "loggedInAccountant",
+        "usedAccountant"
+      ]
+    },
+    "GeneratedSchemaRecord": {
+      "type": "object",
+      "description": "Single record line (detail level)",
+      "properties": {
+        "accountEntry": {
+          "type": "object",
+          "description": "ACCOUNT_ENTRY segment",
+          "properties": {
+            "accountCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ACCOUNT_CODE"
+            },
+            "accountDescription": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ACCOUNT_DESCRIPTION"
+            },
+            "lineType": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.LINE_TYPE"
+            },
+            "debit": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.DEBIT"
+            },
+            "credit": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.CREDIT"
+            },
+            "chartAccountsCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.CHART_ACCOUNTS_CODE"
+            },
+            "chartAccountsDescription": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.CHART_ACCOUNTS_DESCRIPTION"
+            },
+            "entryNumber": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ENTRY_NUMBER"
+            },
+            "lineNumber": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.LINE_NUMBER"
+            },
+            "direction": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.DIRECTION"
+            },
+            "signedAmount": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.SIGNED_AMOUNT"
+            },
+            "amount": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.AMOUNT"
+            },
+            "currencyCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.CURRENCY_CODE"
+            },
+            "distributedVat": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.DISTRIBUTED_VAT"
+            },
+            "signedDistributedVat": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.SIGNED_DISTRIBUTED_VAT"
+            },
+            "baseExclTax": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.BASE_EXCL_TAX"
+            },
+            "vatCode": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.VAT_CODE"
+            },
+            "vatRate": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.VAT_RATE"
+            },
+            "vatBase": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.VAT_BASE"
+            },
+            "entryDate": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ENTRY_DATE"
+            },
+            "accountType": {
+              "type": "string",
+              "description": "CSV column: ACCOUNT_ENTRY.ACCOUNT_TYPE"
+            }
+          },
+          "required": [
+            "accountCode",
+            "accountDescription",
+            "lineType",
+            "debit",
+            "credit",
+            "chartAccountsCode",
+            "chartAccountsDescription",
+            "entryNumber",
+            "lineNumber",
+            "direction",
+            "signedAmount",
+            "amount",
+            "currencyCode",
+            "distributedVat",
+            "signedDistributedVat",
+            "baseExclTax",
+            "vatCode",
+            "vatRate",
+            "vatBase",
+            "entryDate",
+            "accountType"
+          ]
+        },
+        "type": {
+          "type": "object",
+          "description": "TYPE segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: TYPE.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: TYPE.DESCRIPTION"
+            },
+            "attribute1": {
+              "type": "string",
+              "description": "CSV column: TYPE.ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: TYPE.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: TYPE.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: TYPE.ATTRIBUTE_4"
+            },
+            "benefitKind": {
+              "type": "string",
+              "description": "CSV column: TYPE.BENEFIT_KIND"
+            },
+            "groupCode": {
+              "type": "string",
+              "description": "CSV column: TYPE.GROUP_CODE"
+            },
+            "groupDescription": {
+              "type": "string",
+              "description": "CSV column: TYPE.GROUP_DESCRIPTION"
+            },
+            "typeDescription": {
+              "type": "string",
+              "description": "CSV column: TYPE.TYPE_DESCRIPTION"
+            },
+            "typeYourway": {
+              "type": "string",
+              "description": "CSV column: TYPE.TYPE_YOURWAY"
+            },
+            "typeAdsd": {
+              "type": "string",
+              "description": "CSV column: TYPE.TYPE_ADSD"
+            }
+          },
+          "required": [
+            "code",
+            "description",
+            "attribute3",
+            "benefitKind",
+            "groupCode",
+            "groupDescription",
+            "typeDescription",
+            "typeYourway",
+            "typeAdsd"
+          ]
+        },
+        "expense": {
+          "type": "object",
+          "description": "EXPENSE segment",
+          "properties": {
+            "comment": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.COMMENT"
+            },
+            "receipt": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.RECEIPT"
+            },
+            "notPaid": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.NOT_PAID"
+            },
+            "taxIdNumber": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TAX_ID_NUMBER"
+            },
+            "currencyCode": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.CURRENCY_CODE"
+            },
+            "currencyExchangeRate": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.CURRENCY_EXCHANGE_RATE"
+            },
+            "currencyUnit": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.CURRENCY_UNIT"
+            },
+            "exceedingWarning": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.EXCEEDING_WARNING"
+            },
+            "exceedingBlocking": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.EXCEEDING_BLOCKING"
+            },
+            "currencyAmountEntered": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.CURRENCY_AMOUNT_ENTERED"
+            },
+            "number": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.NUMBER"
+            },
+            "date": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.DATE"
+            },
+            "typeReason": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_REASON"
+            },
+            "typeHotelRestaurant": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_HOTEL_RESTAURANT"
+            },
+            "typeDestination": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_DESTINATION"
+            },
+            "typeServiceProviderName": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_SERVICE_PROVIDER_NAME"
+            },
+            "typeInvoiceNumber": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_INVOICE_NUMBER"
+            },
+            "typeDepartureCity": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_DEPARTURE_CITY"
+            },
+            "typeArrivalCity": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_ARRIVAL_CITY"
+            },
+            "typeDepartureTime": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_DEPARTURE_TIME"
+            },
+            "typeArrivalTime": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_ARRIVAL_TIME"
+            },
+            "typeLitresNumber": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_LITRES_NUMBER"
+            },
+            "userField1": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD1"
+            },
+            "userField2": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD2"
+            },
+            "userField3": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD3"
+            },
+            "userField4": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD4"
+            },
+            "userField5": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD5"
+            },
+            "userField6": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD6"
+            },
+            "userField7": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD7"
+            },
+            "userField8": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD8"
+            },
+            "userField9": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD9"
+            },
+            "userField10": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD10"
+            },
+            "userField11": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD11"
+            },
+            "userField12": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD12"
+            },
+            "userField13": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD13"
+            },
+            "userField14": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD14"
+            },
+            "userField15": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD15"
+            },
+            "userField16": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD16"
+            },
+            "userField17": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD17"
+            },
+            "userField18": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD18"
+            },
+            "userField19": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD19"
+            },
+            "userField20": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD20"
+            },
+            "userField21": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD21"
+            },
+            "userField22": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD22"
+            },
+            "userField23": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.USER_FIELD23"
+            },
+            "signedCurrencyAmountEntered": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.SIGNED_CURRENCY_AMOUNT_ENTERED"
+            },
+            "typeOrigin": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_ORIGIN"
+            },
+            "typeTime": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_TIME"
+            },
+            "typeTown/city": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.TYPE_TOWN/CITY"
+            },
+            "folderCode": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.FOLDER_CODE"
+            },
+            "folderName": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.FOLDER_NAME"
+            },
+            "serviceCode": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.SERVICE_CODE"
+            },
+            "serviceName": {
+              "type": "string",
+              "description": "CSV column: EXPENSE.SERVICE_NAME"
+            }
+          },
+          "required": [
+            "comment",
+            "receipt",
+            "notPaid",
+            "currencyCode",
+            "currencyExchangeRate",
+            "currencyUnit",
+            "exceedingWarning",
+            "exceedingBlocking",
+            "currencyAmountEntered",
+            "number",
+            "date",
+            "typeLitresNumber",
+            "userField13",
+            "userField14",
+            "userField15",
+            "userField16",
+            "userField17",
+            "userField21",
+            "userField22",
+            "userField23",
+            "signedCurrencyAmountEntered",
+            "typeOrigin",
+            "serviceCode",
+            "serviceName"
+          ]
+        },
+        "person": {
+          "type": "object",
+          "description": "PERSON segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: PERSON.NUMBER"
+            },
+            "surname": {
+              "type": "string",
+              "description": "CSV column: PERSON.SURNAME"
+            },
+            "firstName": {
+              "type": "string",
+              "description": "CSV column: PERSON.FIRST_NAME"
+            },
+            "login": {
+              "type": "string",
+              "description": "CSV column: PERSON.LOGIN"
+            },
+            "attribute1": {
+              "type": "string",
+              "description": "CSV column: PERSON.ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: PERSON.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: PERSON.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: PERSON.ATTRIBUTE_4"
+            },
+            "categoryCode": {
+              "type": "string",
+              "description": "CSV column: PERSON.CATEGORY_CODE"
+            },
+            "categoryDescription": {
+              "type": "string",
+              "description": "CSV column: PERSON.CATEGORY_DESCRIPTION"
+            },
+            "departmentCode": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_CODE"
+            },
+            "departmentDescription": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_DESCRIPTION"
+            },
+            "departmentAttribute1": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_ATTRIBUTE_1"
+            },
+            "departmentAttribute2": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_ATTRIBUTE_2"
+            },
+            "departmentAttribute3": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_ATTRIBUTE_3"
+            },
+            "departmentAttribute4": {
+              "type": "string",
+              "description": "CSV column: PERSON.DEPARTMENT_ATTRIBUTE_4"
+            },
+            "attribute5": {
+              "type": "string",
+              "description": "CSV column: PERSON.ATTRIBUTE_5"
+            },
+            "information1": {
+              "type": "string",
+              "description": "CSV column: PERSON.INFORMATION_1"
+            },
+            "information2": {
+              "type": "string",
+              "description": "CSV column: PERSON.INFORMATION_2"
+            },
+            "information3": {
+              "type": "string",
+              "description": "CSV column: PERSON.INFORMATION_3"
+            },
+            "information4": {
+              "type": "string",
+              "description": "CSV column: PERSON.INFORMATION_4"
+            },
+            "information5": {
+              "type": "string",
+              "description": "CSV column: PERSON.INFORMATION_5"
+            },
+            "dateClosure": {
+              "type": "string",
+              "description": "CSV column: PERSON.DATE_CLOSURE"
+            }
+          },
+          "required": [
+            "number",
+            "surname",
+            "firstName",
+            "login",
+            "attribute1",
+            "categoryCode",
+            "categoryDescription",
+            "departmentCode",
+            "departmentDescription"
+          ]
+        },
+        "vehicle": {
+          "type": "object",
+          "description": "VEHICLE segment",
+          "properties": {
+            "registrationNumber": {
+              "type": "string",
+              "description": "CSV column: VEHICLE.REGISTRATION_NUMBER"
+            },
+            "company": {
+              "type": "string",
+              "description": "CSV column: VEHICLE.COMPANY"
+            }
+          },
+          "required": [
+            "company"
+          ]
+        },
+        "folder1": {
+          "type": "object",
+          "description": "FOLDER1 segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: FOLDER1.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: FOLDER1.DESCRIPTION"
+            },
+            "Attribute1": {
+              "type": "string",
+              "description": "CSV column: FOLDER1. ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: FOLDER1.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: FOLDER1.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: FOLDER1.ATTRIBUTE_4"
+            }
+          }
+        },
+        "folder2": {
+          "type": "object",
+          "description": "FOLDER2 segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: FOLDER2.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: FOLDER2.DESCRIPTION"
+            }
+          }
+        },
+        "folder3": {
+          "type": "object",
+          "description": "FOLDER3 segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: FOLDER3.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: FOLDER3.DESCRIPTION"
+            }
+          }
+        },
+        "department": {
+          "type": "object",
+          "description": "DEPARTMENT segment",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "CSV column: DEPARTMENT.DESCRIPTION"
+            },
+            "attribute1": {
+              "type": "string",
+              "description": "CSV column: DEPARTMENT.ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: DEPARTMENT.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: DEPARTMENT.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: DEPARTMENT.ATTRIBUTE_4"
+            }
+          },
+          "required": [
+            "description"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "description": "LOCATION segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: LOCATION.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: LOCATION.DESCRIPTION"
+            }
+          }
+        },
+        "country": {
+          "type": "object",
+          "description": "COUNTRY segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: COUNTRY.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: COUNTRY.DESCRIPTION"
+            },
+            "accountingCode": {
+              "type": "string",
+              "description": "CSV column: COUNTRY.ACCOUNTING_CODE"
+            }
+          },
+          "required": [
+            "code",
+            "description",
+            "accountingCode"
+          ]
+        },
+        "company": {
+          "type": "object",
+          "description": "COMPANY segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: COMPANY.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: COMPANY.DESCRIPTION"
+            },
+            "attribute1": {
+              "type": "string",
+              "description": "CSV column: COMPANY.ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: COMPANY.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: COMPANY.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: COMPANY.ATTRIBUTE_4"
+            }
+          },
+          "required": [
+            "code",
+            "description",
+            "attribute4"
+          ]
+        },
+        "branch": {
+          "type": "object",
+          "description": "BRANCH segment",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "CSV column: BRANCH.CODE"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: BRANCH.DESCRIPTION"
+            },
+            "attribute1": {
+              "type": "string",
+              "description": "CSV column: BRANCH.ATTRIBUTE_1"
+            },
+            "attribute2": {
+              "type": "string",
+              "description": "CSV column: BRANCH.ATTRIBUTE_2"
+            },
+            "attribute3": {
+              "type": "string",
+              "description": "CSV column: BRANCH.ATTRIBUTE_3"
+            },
+            "attribute4": {
+              "type": "string",
+              "description": "CSV column: BRANCH.ATTRIBUTE_4"
+            }
+          },
+          "required": [
+            "code",
+            "description"
+          ]
+        },
+        "mission": {
+          "type": "object",
+          "description": "MISSION segment",
+          "properties": {
+            "objective": {
+              "type": "string",
+              "description": "CSV column: MISSION.OBJECTIVE"
+            },
+            "startDate": {
+              "type": "string",
+              "description": "CSV column: MISSION.START_DATE"
+            },
+            "endDate": {
+              "type": "string",
+              "description": "CSV column: MISSION.END_DATE"
+            },
+            "folderCode": {
+              "type": "string",
+              "description": "CSV column: MISSION.FOLDER_CODE"
+            },
+            "folderDescription": {
+              "type": "string",
+              "description": "CSV column: MISSION.FOLDER_DESCRIPTION"
+            },
+            "departmentCode": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_CODE"
+            },
+            "departmentDescription": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_DESCRIPTION"
+            },
+            "departmentAttribute1": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_ATTRIBUTE_1"
+            },
+            "departmentAttribute2": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_ATTRIBUTE_2"
+            },
+            "departmentAttribute3": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_ATTRIBUTE_3"
+            },
+            "departmentAttribute4": {
+              "type": "string",
+              "description": "CSV column: MISSION.DEPARTMENT_ATTRIBUTE_4"
+            },
+            "type": {
+              "type": "string",
+              "description": "CSV column: MISSION.TYPE"
+            }
+          }
+        },
+        "advancepayment": {
+          "type": "object",
+          "description": "ADVANCEPAYMENT segment",
+          "properties": {
+            "number": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.NUMBER"
+            },
+            "description": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.DESCRIPTION"
+            },
+            "allocatedCurrencyAmount": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.ALLOCATED_CURRENCY_AMOUNT"
+            },
+            "signedAllocatedCurrencyAmount": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.SIGNED_ALLOCATED_CURRENCY_AMOUNT"
+            },
+            "currencyCode": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.CURRENCY_CODE"
+            },
+            "currencyExchangeRate": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.CURRENCY_EXCHANGE_RATE"
+            },
+            "currencyUnit": {
+              "type": "string",
+              "description": "CSV column: ADVANCEPAYMENT.CURRENCY_UNIT"
+            }
+          }
+        },
+        "intGuest": {
+          "type": "object",
+          "description": "INT_GUEST segment",
+          "properties": {
+            "companyCode": {
+              "type": "string",
+              "description": "CSV column: INT_GUEST.COMPANY_CODE"
+            },
+            "code": {
+              "type": "string",
+              "description": "CSV column: INT_GUEST.CODE"
+            },
+            "surname": {
+              "type": "string",
+              "description": "CSV column: INT_GUEST.SURNAME"
+            },
+            "firstName": {
+              "type": "string",
+              "description": "CSV column: INT_GUEST.FIRST_NAME"
+            }
+          },
+          "required": [
+            "companyCode",
+            "code",
+            "surname",
+            "firstName"
+          ]
+        },
+        "folder": {
+          "type": "object",
+          "description": "FOLDER segment",
+          "properties": {
+            "percentageBreakdown": {
+              "type": "string",
+              "description": "CSV column: FOLDER.PERCENTAGE_BREAKDOWN"
+            }
+          },
+          "required": [
+            "percentageBreakdown"
+          ]
+        },
+        "service": {
+          "type": "object",
+          "description": "SERVICE segment",
+          "properties": {
+            "percentageBreakdown": {
+              "type": "string",
+              "description": "CSV column: SERVICE.PERCENTAGE_BREAKDOWN"
+            }
+          },
+          "required": [
+            "percentageBreakdown"
+          ]
+        }
+      },
+      "required": [
+        "accountEntry",
+        "type",
+        "expense",
+        "person",
+        "vehicle",
+        "department",
+        "country",
+        "company",
+        "branch",
+        "intGuest",
+        "folder",
+        "service"
+      ]
+    }
+  },
+  "x-beanio": {
+    "streamFormat": "csv",
+    "generatePOJO": true,
+    "useBuilders": true
+  },
+  "x-csv": {
+    "delimiter": ",",
+    "hasHeader": true
+  }
+}

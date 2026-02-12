@@ -91,7 +91,6 @@ public class AnalyzerResource {
      * - schemaName: Name for the generated schema (optional)
      * - fileType: Type of file (CSV, JSON, FIXED_LENGTH, VARIABLE_LENGTH) (optional - auto-detected if not provided)
      * - detectArrays: Whether to detect arrays (default: true)
-     * - optimizeForBeanIO: Whether to optimize for BeanIO (default: true)
      * - descriptorFile: JSON descriptor file for FIXED_LENGTH files (optional)
      * - fieldDefinitions: Inline JSON field definitions for FIXED_LENGTH files (optional)
      * - parserOptions: Additional parser options as JSON (optional)
@@ -106,7 +105,6 @@ public class AnalyzerResource {
             @RestForm("schemaName") String schemaName,
             @RestForm("fileType") String fileTypeStr,
             @RestForm("detectArrays") @DefaultValue("true") boolean detectArrays,
-            @RestForm("optimizeForBeanIO") @DefaultValue("true") boolean optimizeForBeanIO,
             @RestForm("descriptorFile") FileUpload descriptorFile,
             @RestForm("fieldDefinitions") String fieldDefinitions,
             @RestForm("parserOptions") String parserOptionsJson
@@ -166,8 +164,7 @@ public class AnalyzerResource {
             FileAnalysisRequest.Builder requestBuilder = FileAnalysisRequest.builder()
                     .fileType(fileType)
                     .schemaName(schemaName != null ? schemaName : "GeneratedSchema")
-                    .detectArrays(detectArrays)
-                    .optimizeForBeanIO(optimizeForBeanIO);
+                    .detectArrays(detectArrays);
 
             if (fileContent != null) {
                 requestBuilder.fileContent(fileContent);

@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.datasabai.hsb</groupId>
         <artifactId>file-schema-analyzer-service</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>analyzer-sdk-adapter</artifactId>

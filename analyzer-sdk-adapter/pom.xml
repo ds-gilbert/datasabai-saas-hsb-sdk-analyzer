@@ -32,7 +32,6 @@
         <dependency>
             <groupId>com.datasabai.hsb</groupId>
             <artifactId>analyzer-core</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <!-- Logging - REQUIRED by analyzer-core -->

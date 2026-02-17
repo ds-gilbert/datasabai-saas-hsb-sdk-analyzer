@@ -7,7 +7,7 @@
 
     <groupId>com.datasabai.hsb</groupId>
     <artifactId>file-schema-analyzer-service</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <name>File Schema Analyzer Service</name>
@@ -23,6 +23,9 @@
     </modules>
 
     <properties>
+        <!-- Single centralized version using revision property -->
+        <revision>1.0.0</revision>
+        
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,6 +57,7 @@
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
+        <maven-flatten-plugin.version>1.6.0</maven-flatten-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -144,14 +148,14 @@
     <distributionManagement>
         <repository>
             <id>hubsabai-maven</id>
-            <url>https://pkgs.dev.azure.com/datasabai/_packaging/hubsabai-maven/maven/v1</url>
+            <url>https://pkgs.dev.azure.com/datasabai/Hubsabai/_packaging/hubsabai-maven/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
         </repository>
         <snapshotRepository>
             <id>hubsabai-maven</id>
-            <url>https://pkgs.dev.azure.com/datasabai/_packaging/hubsabai-maven/maven/v1</url>
+            <url>https://pkgs.dev.azure.com/datasabai/Hubsabai/_packaging/hubsabai-maven/maven/v1</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -176,7 +180,40 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${maven-flatten-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        
+        <plugins>
+            <!-- Flatten Maven Plugin for revision-based version management -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>oss</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

@@ -8,6 +8,7 @@ import com.datasabai.services.schemaanalyzer.core.FileSchemaAnalyzer;
 import com.datasabai.services.schemaanalyzer.core.model.AnalyzerException;
 import com.datasabai.services.schemaanalyzer.core.model.FileAnalysisRequest;
 import com.datasabai.services.schemaanalyzer.core.model.SchemaGenerationResult;
+import com.datasabai.services.schemaanalyzer.core.model.XSchemaMetadata;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -195,6 +196,21 @@ public class FileSchemaAnalyzerAdapter implements SdkModule<FileAnalysisRequest,
         schema.put("parserOptions.tagValuePairs", "Variable-Length: Enable tag-value mode (true/false, default: false)");
         schema.put("parserOptions.tagValueDelimiter", "Variable-Length: Tag-value delimiter (default: =)");
 
+        // Schema metadata (x-schemaMetadata) options
+        schema.put("metadata.id", "Schema metadata: unique identifier");
+        schema.put("metadata.version", "Schema metadata: version (e.g., 1.0)");
+        schema.put("metadata.createdAt", "Schema metadata: creation date (yyyyMMdd)");
+        schema.put("metadata.representation", "Schema metadata: physical format (e.g., FLAT, JSON, CSV)");
+        schema.put("metadata.specification", "Schema metadata: standard family (auto-filled from file type if not set)");
+        schema.put("metadata.specVersion", "Schema metadata: specification version");
+        schema.put("metadata.documentCode", "Schema metadata: document/message type code");
+        schema.put("metadata.documentType", "Schema metadata: business classification");
+        schema.put("metadata.modelName", "Schema metadata: model name (auto-filled from schema name if not set)");
+        schema.put("metadata.category", "Schema metadata: category (standard, projection, customer)");
+        schema.put("metadata.baseStandardId", "Schema metadata: base standard ID (for projection/customer)");
+        schema.put("metadata.customerId", "Schema metadata: customer ID (for customer category)");
+        schema.put("metadata.customerName", "Schema metadata: customer name (for customer category)");
+
         return schema;
     }
 
@@ -230,6 +246,40 @@ public class FileSchemaAnalyzerAdapter implements SdkModule<FileAnalysisRequest,
 
         if (!parserOptions.isEmpty()) {
             request.setParserOptions(parserOptions);
+        }
+
+        // Build x-schemaMetadata from metadata.* context keys
+        if (request.getXSchemaMetadata() == null) {
+            XSchemaMetadata.Builder metaBuilder = XSchemaMetadata.builder();
+            boolean hasAny = false;
+
+            Map<String, java.util.function.BiConsumer<XSchemaMetadata.Builder, String>> metaFields = Map.ofEntries(
+                    Map.entry("metadata.id", (b, v) -> b.id(v)),
+                    Map.entry("metadata.version", (b, v) -> b.version(v)),
+                    Map.entry("metadata.createdAt", (b, v) -> b.createdAt(v)),
+                    Map.entry("metadata.representation", (b, v) -> b.representation(v)),
+                    Map.entry("metadata.specification", (b, v) -> b.specification(v)),
+                    Map.entry("metadata.specVersion", (b, v) -> b.specVersion(v)),
+                    Map.entry("metadata.documentCode", (b, v) -> b.documentCode(v)),
+                    Map.entry("metadata.documentType", (b, v) -> b.documentType(v)),
+                    Map.entry("metadata.modelName", (b, v) -> b.modelName(v)),
+                    Map.entry("metadata.category", (b, v) -> b.category(v)),
+                    Map.entry("metadata.baseStandardId", (b, v) -> b.baseStandardId(v)),
+                    Map.entry("metadata.customerId", (b, v) -> b.customerId(v)),
+                    Map.entry("metadata.customerName", (b, v) -> b.customerName(v))
+            );
+
+            for (var entry : metaFields.entrySet()) {
+                var optValue = context.getConfig(entry.getKey());
+                if (optValue.isPresent()) {
+                    entry.getValue().accept(metaBuilder, optValue.get());
+                    hasAny = true;
+                }
+            }
+
+            if (hasAny) {
+                request.setXSchemaMetadata(metaBuilder.build());
+            }
         }
     }
 

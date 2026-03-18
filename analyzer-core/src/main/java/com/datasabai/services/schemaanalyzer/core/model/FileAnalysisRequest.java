@@ -57,6 +57,7 @@ public class FileAnalysisRequest {
     private boolean detectArrays;
     private Map<String, String> parserOptions;
     private Map<String, String> typeOverrides;
+    private XSchemaMetadata xSchemaMetadata;
 
     public FileAnalysisRequest() {
         this.sampleFileContents = new ArrayList<>();
@@ -208,6 +209,19 @@ public class FileAnalysisRequest {
     }
 
     /**
+     * Gets the optional schema metadata to embed as {@code x-schemaMetadata} in the generated JSON Schema.
+     *
+     * @return schema metadata or null
+     */
+    public XSchemaMetadata getXSchemaMetadata() {
+        return xSchemaMetadata;
+    }
+
+    public void setXSchemaMetadata(XSchemaMetadata xSchemaMetadata) {
+        this.xSchemaMetadata = xSchemaMetadata;
+    }
+
+    /**
      * Gets a parser option value.
      *
      * @param key option key
@@ -298,6 +312,11 @@ public class FileAnalysisRequest {
                 request.typeOverrides = new HashMap<>();
             }
             request.typeOverrides.put(path, type);
+            return this;
+        }
+
+        public Builder xSchemaMetadata(XSchemaMetadata xSchemaMetadata) {
+            request.xSchemaMetadata = xSchemaMetadata;
             return this;
         }
 

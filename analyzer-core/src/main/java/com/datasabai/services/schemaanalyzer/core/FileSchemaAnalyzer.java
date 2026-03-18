@@ -2,9 +2,12 @@ package com.datasabai.services.schemaanalyzer.core;
 
 import com.datasabai.services.schemaanalyzer.core.generator.JsonSchemaGenerator;
 import com.datasabai.services.schemaanalyzer.core.generator.JsonSchema2PojoGenerator;
+import com.datasabai.services.schemaanalyzer.core.generator.SchemaMetadataInjector;
 import com.datasabai.services.schemaanalyzer.core.model.*;
 import com.datasabai.services.schemaanalyzer.core.parser.FileParser;
 import com.datasabai.services.schemaanalyzer.core.parser.ParserFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -330,6 +333,18 @@ public class FileSchemaAnalyzer {
             );
         }
 
+        // Inject x-schemaMetadata if provided
+        if (request.getXSchemaMetadata() != null) {
+            XSchemaMetadata meta = request.getXSchemaMetadata();
+            if (meta.getSpecification() == null) {
+                meta.setSpecification(request.getFileType().name());
+            }
+            if (meta.getModelName() == null) {
+                meta.setModelName(request.getSchemaName());
+            }
+            schema = SchemaMetadataInjector.inject(schema, meta);
+        }
+
         log.debug("JSON Schema generated: {} properties", schemaGenerator.countProperties(schema));
         return schema;
     }
@@ -361,13 +376,19 @@ public class FileSchemaAnalyzer {
     ) throws AnalyzerException {
         log.debug("Step 7: Building result");
 
-        // Generate schema as string using appropriate generator
+        // Serialize the already-enriched schema map (includes x-schemaMetadata if provided)
         String jsonSchemaString;
-        if (request.getFileType() == FileType.CSV) {
-            JsonSchema2PojoGenerator csvGenerator = new JsonSchema2PojoGenerator();
-            jsonSchemaString = csvGenerator.generateSchemaAsString(structure, request);
-        } else {
-            jsonSchemaString = schemaGenerator.generateSchemaAsString(structure, request);
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            jsonSchemaString = mapper.writeValueAsString(jsonSchema);
+        } catch (Exception e) {
+            throw new AnalyzerException(
+                    "SERIALIZATION_ERROR",
+                    request.getFileType(),
+                    "Failed to serialize JSON Schema: " + e.getMessage(),
+                    e
+            );
         }
 
         // Build metadata

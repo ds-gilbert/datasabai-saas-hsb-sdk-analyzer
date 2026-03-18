@@ -107,7 +107,20 @@ public class AnalyzerResource {
             @RestForm("detectArrays") @DefaultValue("true") boolean detectArrays,
             @RestForm("descriptorFile") FileUpload descriptorFile,
             @RestForm("fieldDefinitions") String fieldDefinitions,
-            @RestForm("parserOptions") String parserOptionsJson
+            @RestForm("parserOptions") String parserOptionsJson,
+            @RestForm("metadataId") String metadataId,
+            @RestForm("metadataVersion") String metadataVersion,
+            @RestForm("createdAt") String metaCreatedAt,
+            @RestForm("representation") String metaRepresentation,
+            @RestForm("specification") String metaSpecification,
+            @RestForm("specVersion") String metaSpecVersion,
+            @RestForm("documentCode") String metaDocumentCode,
+            @RestForm("documentType") String metaDocumentType,
+            @RestForm("modelName") String metaModelName,
+            @RestForm("category") String metaCategory,
+            @RestForm("baseStandardId") String metaBaseStandardId,
+            @RestForm("customerId") String metaCustomerId,
+            @RestForm("customerName") String metaCustomerName
     ) {
         log.info("Analyzing uploaded file: {}", file.fileName());
 
@@ -177,6 +190,16 @@ public class AnalyzerResource {
                 requestBuilder.parserOptions(parserOptions);
             }
 
+            // Build x-schemaMetadata if any metadata parameter is provided
+            XSchemaMetadata xMeta = buildXSchemaMetadataFromForm(
+                    metadataId, metadataVersion, metaCreatedAt, metaRepresentation,
+                    metaSpecification, metaSpecVersion, metaDocumentCode,
+                    metaDocumentType, metaModelName, metaCategory,
+                    metaBaseStandardId, metaCustomerId, metaCustomerName);
+            if (xMeta != null) {
+                requestBuilder.xSchemaMetadata(xMeta);
+            }
+
             FileAnalysisRequest request = requestBuilder.build();
 
             // Analyze
@@ -211,6 +234,39 @@ public class AnalyzerResource {
                     ))
                     .build();
         }
+    }
+
+    private XSchemaMetadata buildXSchemaMetadataFromForm(
+            String id, String version, String createdAt, String representation,
+            String specification, String specVersion, String documentCode,
+            String documentType, String modelName, String category,
+            String baseStandardId, String customerId, String customerName) {
+
+        boolean hasAny = id != null || version != null || createdAt != null
+                || representation != null || specification != null || specVersion != null
+                || documentCode != null || documentType != null || modelName != null
+                || category != null || baseStandardId != null || customerId != null
+                || customerName != null;
+
+        if (!hasAny) {
+            return null;
+        }
+
+        return XSchemaMetadata.builder()
+                .id(id)
+                .version(version)
+                .createdAt(createdAt)
+                .representation(representation)
+                .specification(specification)
+                .specVersion(specVersion)
+                .documentCode(documentCode)
+                .documentType(documentType)
+                .modelName(modelName)
+                .category(category)
+                .baseStandardId(baseStandardId)
+                .customerId(customerId)
+                .customerName(customerName)
+                .build();
     }
 
     /**

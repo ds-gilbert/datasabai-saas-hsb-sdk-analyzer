@@ -205,16 +205,10 @@ public class JsonFileParser implements FileParser {
                 .build();
 
         // Analyze first element to determine item type
+        // Empty arrays are ignored (no items child) to avoid generating empty POJOs
         if (arrayNode.size() > 0) {
             JsonNode firstElement = arrayNode.get(0);
             StructureElement itemElement = convertJsonNode("item", firstElement);
-            element.addChild(itemElement);
-        } else {
-            // Empty array - create generic item
-            StructureElement itemElement = StructureElement.builder()
-                    .name("item")
-                    .type("object")
-                    .build();
             element.addChild(itemElement);
         }
 

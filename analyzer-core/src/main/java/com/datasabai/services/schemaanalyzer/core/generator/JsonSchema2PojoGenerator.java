@@ -187,6 +187,21 @@ public class JsonSchema2PojoGenerator {
             return str;
         }
         String[] parts = str.split("[_\\s]+");
+
+        // Single-token input: preserve internal case (PascalCase/camelCase inputs
+        // like "OrderNumber" must become "orderNumber", not "ordernumber").
+        // Pure uppercase tokens like "SKU" are lowercased entirely.
+        if (parts.length == 1) {
+            String token = parts[0];
+            if (token.isEmpty()) {
+                return token;
+            }
+            if (token.equals(token.toUpperCase())) {
+                return token.toLowerCase();
+            }
+            return Character.toLowerCase(token.charAt(0)) + token.substring(1);
+        }
+
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i].toLowerCase();

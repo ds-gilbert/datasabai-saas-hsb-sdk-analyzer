@@ -1,0 +1,9 @@
+OrderNumber,OrderDate,CustomerCode,CustomerName,ShipToName,ShipToAddress1,ShipToAddress2,ShipToCity,ShipToState,ShipToZip,ShipToCountry,ShipMethod,LineNumber,SKU,ProductName,Quantity,UnitPrice,Currency
+ORD-20260421-001,2026-04-21,CUST-1001,Maison Dupont,Jean Dupont,12 Rue de Rivoli,,Paris,IDF,75001,FR,Standard,1,SKU-A100,Widget Pro X,3,29.99,EUR
+ORD-20260421-001,2026-04-21,CUST-1001,Maison Dupont,Jean Dupont,12 Rue de Rivoli,,Paris,IDF,75001,FR,Standard,2,SKU-B205,Connector Cable 2m,1,14.50,EUR
+ORD-20260421-001,2026-04-21,CUST-1001,Maison Dupont,Jean Dupont,12 Rue de Rivoli,,Paris,IDF,75001,FR,Standard,3,SKU-C310,Mounting Bracket,5,7.25,EUR
+ORD-20260421-002,2026-04-21,CUST-2045,TechFlow GmbH,Anna Müller,Hauptstrasse 45,Gebäude B,Berlin,BE,10115,DE,Express,1,SKU-D420,Sensor Module V2,10,84.00,EUR
+ORD-20260421-002,2026-04-21,CUST-2045,TechFlow GmbH,Anna Müller,Hauptstrasse 45,Gebäude B,Berlin,BE,10115,DE,Express,2,SKU-A100,Widget Pro X,2,29.99,EUR
+ORD-20260421-003,2026-04-22,CUST-3782,GreenLeaf Ltd,Sam Taylor,88 Oxford Street,Floor 3,London,LDN,W1D 1BS,GB,Standard,1,SKU-E550,Power Adapter 65W,4,22.00,GBP
+ORD-20260421-003,2026-04-22,CUST-3782,GreenLeaf Ltd,Sam Taylor,88 Oxford Street,Floor 3,London,LDN,W1D 1BS,GB,Standard,2,SKU-F601,USB Hub 7-Port,2,35.99,GBP
+ORD-20260421-003,2026-04-22,CUST-3782,GreenLeaf Ltd,Sam Taylor,88 Oxford Street,Floor 3,London,LDN,W1D 1BS,GB,Standard,3,SKU-C310,Mounting Bracket,1,7.25,GBP

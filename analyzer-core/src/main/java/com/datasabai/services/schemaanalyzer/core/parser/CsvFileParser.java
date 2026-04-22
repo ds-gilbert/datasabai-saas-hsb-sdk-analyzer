@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -130,7 +131,7 @@ public class CsvFileParser implements FileParser {
             int dataStartIndex;
 
             if (hasHeader) {
-                headers = List.of(allLines.get(0));
+                headers = Arrays.asList(allLines.get(0));
                 dataStartIndex = 1;
             } else {
                 // Generate column names: column1, column2, ...
